@@ -18,18 +18,17 @@ def main():
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
     while True:
+        log_state()
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
 
-        # 1. Fill the background
-        screen.fill("black")
+        player.update(dt)
 
-        # 2. Draw objects
-        player.draw(screen)
-
-        # 3. Refresh the screen
-        pygame.display.flip()
+        screen.fill("black")  # 1. Fill the background
+        player.draw(screen)  # 2. Draw objects
+        pygame.display.flip()  # 3. Refresh the screen
 
         # 4. Handle timing
         # Limit the framerate to 60 FPS and calculate delta time
@@ -37,8 +36,6 @@ def main():
             60
         )  # .tick(60) returns the milliseconds since the last call
         dt = ms_passed / 1000  # divide by 1000 to convert to seconds
-
-        log_state()
 
 
 if __name__ == "__main__":
