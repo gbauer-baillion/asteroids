@@ -22,8 +22,8 @@ class Asteroid(CircleShape):
 
         if (
             self.radius <= ASTEROID_MIN_RADIUS
-        ):  # 2. If it's small enough, just stop here
-            return
+        ):  # 2. If it's small asteroid, it's killed and gives high points
+            return 250
 
         else:  # 3. Handle the split logic
             log_event("asteroid_split")
@@ -44,3 +44,5 @@ class Asteroid(CircleShape):
             # 7. Assign the new velocities multiplied by 1.2 to make them faster
             asteroid1.velocity = new_velocity1 * 1.2
             asteroid2.velocity = new_velocity2 * 1.2
+
+            return 100  # Return a lower point value for larger asteroids
